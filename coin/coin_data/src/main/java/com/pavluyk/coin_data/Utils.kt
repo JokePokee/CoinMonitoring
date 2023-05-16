@@ -2,6 +2,7 @@ package com.pavluyk.coin_data
 
 import android.util.Log
 import com.google.gson.JsonObject
+import com.pavluyk.coin_domain.models.CoinDetailed
 import com.pavluyk.coin_domain.models.CoinModel
 
 fun JsonObject.toCoinDataList(): List<CoinModel> {
@@ -23,4 +24,8 @@ fun JsonObject.toCoinDataList(): List<CoinModel> {
         Log.d("Andrey", "$spisok")
         spisok
     }
+}
+
+fun JsonObject.toCoinDetailedList():List<CoinDetailed>{
+    return emptyList()
 }

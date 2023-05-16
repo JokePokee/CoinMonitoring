@@ -9,6 +9,6 @@ interface CoinMonitoringApi {
     @GET("assets?")
     suspend fun getData(
         @Query("limit") limit: Int = 9,
-        @Query("offset") offset: Int
+        @Query("offset") offset: Int? = null
     ): JsonObject
 }
