@@ -1,0 +1,20 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "CoinMonitoring"
+include ':app'
+include ':coin:coin_di'
+include ':coin:coin_domain'
+include ':coin:coin_data'
+include ':coin:coin_presentation'
