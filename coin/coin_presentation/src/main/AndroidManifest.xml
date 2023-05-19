@@ -6,6 +6,12 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CoinMonitoring" />
+        android:theme="@style/Theme.CoinMonitoring" >
+
+        <activity
+            android:name=".activity.CoinMonitoringActivity"
+            />
+    </application>
+
 
 </manifest>
