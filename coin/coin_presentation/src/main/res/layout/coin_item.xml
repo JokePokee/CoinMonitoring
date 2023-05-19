@@ -1,6 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingVertical="10dp"
+    android:paddingHorizontal="13dp"
+    tools:context=".activity.CoinMonitoringActivity"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackgroundBorderless">
 
+    <RelativeLayout
+        android:id="@+id/rlPrefix"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/coin_minus_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvPrefix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="B"
+            android:textColor="@color/headerColor"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvCoinName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Bitcoin"
+        android:textColor="@color/headerColor"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/rlPrefix"
+        app:layout_constraintStart_toEndOf="@+id/rlPrefix"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvSymbol"
+        android:textColorHint="@color/headerColor"
+        app:layout_constraintStart_toEndOf="@+id/tvCoinName"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text = "BTC"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/rlPrefix"
+        android:layout_marginStart="10dp"/>
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_navigate_next_24"
+        app:layout_constraintBottom_toBottomOf="@+id/rlPrefix"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
