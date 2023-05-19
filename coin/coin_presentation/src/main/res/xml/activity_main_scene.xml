@@ -5,6 +5,7 @@
     <Transition
         app:constraintSetEnd="@id/end"
         app:constraintSetStart="@id/start"
+        app:layoutDuringTransition="honorRequest"
         app:duration="300">
 
         <OnSwipe

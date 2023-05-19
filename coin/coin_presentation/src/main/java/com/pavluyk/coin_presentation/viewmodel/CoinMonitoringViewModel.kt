@@ -12,13 +12,17 @@ class CoinMonitoringViewModel(
 ) : ViewModel() {
 
     var coinDataLiveData = MutableLiveData<List<CoinModel>>()
-    var openSelectedCoinActivity = MutableLiveData<String>()
+    //var openSelectedCoinActivity = MutableLiveData<String>()
 
     private var isLoading = false
 
 
     init {
-        viewModelScope.launch { coinDataLiveData.value = fetchDataUseCase.execute() }
+        viewModelScope.launch {
+            isLoading = true
+            coinDataLiveData.value = fetchDataUseCase.execute()
+            isLoading = false
+        }
     }
 
     fun onPagination() {
@@ -26,9 +30,8 @@ class CoinMonitoringViewModel(
             viewModelScope.launch {
                 isLoading = true
                 val currentList = coinDataLiveData.value ?: emptyList()
-                if (currentList.isNotEmpty()) {
-                    coinDataLiveData.value =
-                        currentList + fetchDataUseCase.execute(currentList.last().rank)
+                coinDataLiveData.value = if (currentList.isNotEmpty()) {
+                    currentList + fetchDataUseCase.execute(currentList.last().rank)
                 } else {
                     fetchDataUseCase.execute()
                 }
@@ -37,8 +40,8 @@ class CoinMonitoringViewModel(
         }
     }
 
-    fun onItemClicked(symbol: String) {
-        openSelectedCoinActivity.value = symbol
-    }
+//    fun onItemClicked(symbol: String) {
+//        openSelectedCoinActivity.value = symbol
+//    }
 
 }

@@ -12,12 +12,13 @@ import com.pavluyk.coin_presentation.viewmodel.CoinMonitoringViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CoinMonitoringActivity : AppCompatActivity() {
-    val adapter = CoinMonitoringAdapter(clickListener = { symbol ->
-        viewModel.onItemClicked(symbol)
+    val adapter = CoinMonitoringAdapter(
+        //clickListener = { symbol ->
+        //viewModel.onItemClicked(symbol)
 
-    }, onScrolledToBottom = {
-        viewModel.onPagination()
-    })
+        onScrolledToBottom = {
+            viewModel.onPagination()
+        })
 
     private val viewModel: CoinMonitoringViewModel by viewModel()
 
@@ -35,7 +36,6 @@ class CoinMonitoringActivity : AppCompatActivity() {
         viewModel.coinDataLiveData.observe(this, Observer {
             it?.let { adapter.setData(it) }
         })
-
 
     }
 }

@@ -10,7 +10,7 @@ import com.pavluyk.coin_presentation.R
 import java.text.DecimalFormat
 
 class CoinMonitoringAdapter(
-    var clickListener: (String) -> (Unit),
+    //var clickListener: (String) -> (Unit),
     val onScrolledToBottom: (CoinModel) -> (Unit)
 ) :
     RecyclerView.Adapter<CoinMonitoringAdapter.CoinViewHolder>() {
@@ -60,12 +60,13 @@ class CoinMonitoringAdapter(
             }
 
             itemView.setOnClickListener {
-                clickListener(coinModel.symbol)
+                //clickListener(coinModel.symbol)
             }
         }
     }
 
     fun setData(list: List<CoinModel>) {
         coinItems = list.toMutableList()
+        notifyDataSetChanged()
     }
 }
