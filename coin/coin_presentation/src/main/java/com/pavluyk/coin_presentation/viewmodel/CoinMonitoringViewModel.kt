@@ -14,7 +14,7 @@ class CoinMonitoringViewModel(
     var coinDataLiveData = MutableLiveData<List<CoinModel>>()
     var openSelectedCoinActivity = MutableLiveData<String>()
 
-    var isLoading = false
+    private var isLoading = false
 
 
     init {
