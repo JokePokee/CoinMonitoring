@@ -4,18 +4,43 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.pavluyk.coin_domain.models.CoinModel
 import com.pavluyk.coin_presentation.R
 import java.text.DecimalFormat
 
 class CoinMonitoringAdapter(
-    //var clickListener: (String) -> (Unit),
+    var clickListener: (String) -> (Unit),
     val onScrolledToBottom: (CoinModel) -> (Unit)
 ) :
     RecyclerView.Adapter<CoinMonitoringAdapter.CoinViewHolder>() {
 
     private var coinItems: MutableList<CoinModel> = mutableListOf()
+        set(value) {
+            val diffUtil = object : DiffUtil.Callback() {
+                override fun getOldListSize() = field.size
+
+                override fun getNewListSize() = value.size
+
+                override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                    return field[oldItemPosition].rank == value[newItemPosition].rank
+                }
+
+                override fun areContentsTheSame(
+                    oldItemPosition: Int,
+                    newItemPosition: Int
+                ): Boolean {
+                    return field[oldItemPosition] == value[newItemPosition]
+                }
+
+            }
+            val diffResult = DiffUtil.calculateDiff(diffUtil)
+            field.clear()
+            field.addAll(value)
+            diffResult.dispatchUpdatesTo(this)
+        }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinViewHolder {
         return CoinViewHolder(
@@ -60,7 +85,7 @@ class CoinMonitoringAdapter(
             }
 
             itemView.setOnClickListener {
-                //clickListener(coinModel.symbol)
+                clickListener(coinModel.symbol)
             }
         }
     }

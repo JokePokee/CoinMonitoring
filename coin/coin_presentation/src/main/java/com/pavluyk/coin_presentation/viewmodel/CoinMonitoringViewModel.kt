@@ -1,5 +1,6 @@
 package com.pavluyk.coin_presentation.viewmodel
 
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,7 +13,8 @@ class CoinMonitoringViewModel(
 ) : ViewModel() {
 
     var coinDataLiveData = MutableLiveData<List<CoinModel>>()
-    //var openSelectedCoinActivity = MutableLiveData<String>()
+    var detailedValueLiveData = MutableLiveData<String>()
+
 
     private var isLoading = false
 
@@ -40,8 +42,10 @@ class CoinMonitoringViewModel(
         }
     }
 
-//    fun onItemClicked(symbol: String) {
-//        openSelectedCoinActivity.value = symbol
-//    }
+    fun onItemClicked(symbol: String) {
+        detailedValueLiveData.value = symbol
+
+    }
+
 
 }

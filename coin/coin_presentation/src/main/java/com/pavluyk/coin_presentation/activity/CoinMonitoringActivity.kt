@@ -1,5 +1,6 @@
 package com.pavluyk.coin_presentation.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -13,9 +14,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CoinMonitoringActivity : AppCompatActivity() {
     val adapter = CoinMonitoringAdapter(
-        //clickListener = { symbol ->
-        //viewModel.onItemClicked(symbol)
-
+        clickListener = { symbol ->
+            viewModel.onItemClicked(symbol)
+        },
         onScrolledToBottom = {
             viewModel.onPagination()
         })
@@ -36,6 +37,7 @@ class CoinMonitoringActivity : AppCompatActivity() {
         viewModel.coinDataLiveData.observe(this, Observer {
             it?.let { adapter.setData(it) }
         })
+
 
     }
 }
