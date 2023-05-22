@@ -7,6 +7,6 @@ import retrofit2.http.Query
 interface CoinDetailedApi {
     @GET("symbol?")
     suspend fun getDetailedData(
-        @Query("asset_symbol") assetSymbol: String
+        @Query("asset_symbol") assetSymbol: String? = null
     ): JsonObject
 }

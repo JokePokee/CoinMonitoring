@@ -9,7 +9,10 @@ import com.pavluyk.coin_domain.models.CoinDetailed
 import com.pavluyk.coin_domain.models.CoinModel
 import com.pavluyk.coin_domain.usecases.FetchDetailedDataUseCase
 import com.pavluyk.coin_presentation.activity.SelectedCoinActivity
+import com.pavluyk.coin_presentation.activity.utils.SingleLiveEvent
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class CoinDetailedViewModel(
     private val fetchDetailedDataUseCase: FetchDetailedDataUseCase
@@ -17,16 +20,11 @@ class CoinDetailedViewModel(
 
     var coinDetailedLiveData = MutableLiveData<List<CoinDetailed>>()
 
-
     fun getDetailedData(symbol: String) {
         viewModelScope.launch {
-            val currentList = coinDetailedLiveData.value ?: emptyList()
-            if (currentList.isEmpty()) {
-                currentList + fetchDetailedDataUseCase.execute(symbol)
-            } else {
-                fetchDetailedDataUseCase.execute()
-            }
+            coinDetailedLiveData.value = fetchDetailedDataUseCase.execute(symbol)
         }
+
     }
 
 

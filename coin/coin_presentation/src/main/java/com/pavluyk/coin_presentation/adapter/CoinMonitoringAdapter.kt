@@ -92,6 +92,5 @@ class CoinMonitoringAdapter(
 
     fun setData(list: List<CoinModel>) {
         coinItems = list.toMutableList()
-        notifyDataSetChanged()
     }
 }

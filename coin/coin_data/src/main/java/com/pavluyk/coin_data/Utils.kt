@@ -26,6 +26,15 @@ fun JsonObject.toCoinDataList(): List<CoinModel> {
     }
 }
 
-fun JsonObject.toCoinDetailedList():List<CoinDetailed>{
-    return emptyList()
+fun JsonObject.toCoinDetailedList(): List<CoinDetailed> {
+    val firstResponseData = this["Data"].asJsonObject
+
+
+    val spisok = CoinDetailed(
+        name = firstResponseData["NAME"].asString,
+        logoUrl = firstResponseData["LOGO_URL"].asString,
+        assetDescription = firstResponseData["ASSET_DESCRIPTION"].asString
+
+    )
+    return listOf(spisok)
 }

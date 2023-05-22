@@ -15,14 +15,18 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class CoinMonitoringActivity : AppCompatActivity() {
     val adapter = CoinMonitoringAdapter(
         clickListener = { symbol ->
-            viewModel.onItemClicked(symbol)
+            startActivity(
+                Intent(this, SelectedCoinActivity::class.java).putExtra(
+                    "minModel",
+                    symbol
+                )
+            )
         },
         onScrolledToBottom = {
             viewModel.onPagination()
         })
 
     private val viewModel: CoinMonitoringViewModel by viewModel()
-
     val recyclerView by lazy {
         findViewById<RecyclerView>(R.id.rvCoin).apply {
             adapter = this@CoinMonitoringActivity.adapter
@@ -37,7 +41,6 @@ class CoinMonitoringActivity : AppCompatActivity() {
         viewModel.coinDataLiveData.observe(this, Observer {
             it?.let { adapter.setData(it) }
         })
-
 
     }
 }

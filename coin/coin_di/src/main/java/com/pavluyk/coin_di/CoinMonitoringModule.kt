@@ -14,7 +14,6 @@ val coinMonitoringModule = module {
         val client = OkHttpClient.Builder()
             .addInterceptor(interceptor)
             .build()
-
         Retrofit.Builder()
             .baseUrl("https://api.coincap.io/v2/").client(client)
             .addConverterFactory(GsonConverterFactory.create()).build()

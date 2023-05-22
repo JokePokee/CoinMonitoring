@@ -5,12 +5,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.map
 import com.bumptech.glide.Glide
 import com.pavluyk.coin_presentation.R
-import com.pavluyk.coin_presentation.adapter.CoinMonitoringAdapter
 import com.pavluyk.coin_presentation.viewmodel.CoinDetailedViewModel
-import com.pavluyk.coin_presentation.viewmodel.CoinMonitoringViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SelectedCoinActivity : AppCompatActivity() {
@@ -28,17 +25,16 @@ class SelectedCoinActivity : AppCompatActivity() {
         tvSelectedCoin = findViewById(R.id.tvSelectedCoin)
         tvDetailedInfo = findViewById(R.id.tvDetailedInfo)
 
-
-        var symbol = intent.getStringExtra("minModel")
-        symbol?.let { viewModel.getDetailedData(it) }
+        val receive = intent.getStringExtra("minModel")
+        receive?.let { viewModel.getDetailedData(it) }
 
         viewModel.coinDetailedLiveData.observe(this, Observer { coinDetailedList ->
-            if (coinDetailedList.isNotEmpty()) {
-                val coinDetailed = coinDetailedList.first()
-                tvSelectedCoin.text = coinDetailed.name
-                tvDetailedInfo.text = coinDetailed.assetDescription
-                Glide.with(this).load(coinDetailed.logoUrl).into(ivSelectedCoin)
-            }
+            val coinDetailed = coinDetailedList.first()
+            coinDetailed
+            tvSelectedCoin.text = coinDetailed.name
+            tvDetailedInfo.text = coinDetailed.assetDescription
+            Glide.with(this).load(coinDetailed.logoUrl).into(ivSelectedCoin)
+
         })
     }
 }
