@@ -4,7 +4,7 @@ import com.pavluyk.coin_domain.models.CoinDetailed
 import com.pavluyk.coin_domain.repositories.CoinDetailedRepository
 
 class FetchDetailedDataUseCase(private val coinDetailedRepository: CoinDetailedRepository) {
-    suspend fun execute(symbol: String): List<CoinDetailed> {
+    suspend fun execute(symbol: String): CoinDetailed {
         return coinDetailedRepository.fetchDetailedData(symbol)
     }
 }

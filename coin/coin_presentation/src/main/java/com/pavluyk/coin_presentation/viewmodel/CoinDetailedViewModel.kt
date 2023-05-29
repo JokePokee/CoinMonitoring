@@ -18,7 +18,7 @@ class CoinDetailedViewModel(
     private val fetchDetailedDataUseCase: FetchDetailedDataUseCase
 ) : ViewModel() {
 
-    var coinDetailedLiveData = MutableLiveData<List<CoinDetailed>>()
+    var coinDetailedLiveData = MutableLiveData<CoinDetailed>()
 
     fun getDetailedData(symbol: String) {
         viewModelScope.launch {

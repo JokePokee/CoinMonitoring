@@ -28,8 +28,8 @@ class SelectedCoinActivity : AppCompatActivity() {
         val receive = intent.getStringExtra("minModel")
         receive?.let { viewModel.getDetailedData(it) }
 
-        viewModel.coinDetailedLiveData.observe(this, Observer { coinDetailedList ->
-            val coinDetailed = coinDetailedList.first()
+        viewModel.coinDetailedLiveData.observe(this, Observer { coinDetailed ->
+            val coinDetailed = coinDetailed
             coinDetailed
             tvSelectedCoin.text = coinDetailed.name
             tvDetailedInfo.text = coinDetailed.assetDescription
