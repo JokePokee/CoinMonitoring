@@ -12,18 +12,21 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SelectedCoinActivity : AppCompatActivity() {
 
-    lateinit var tvSelectedCoin: TextView
-    lateinit var ivSelectedCoin: ImageView
-    lateinit var tvDetailedInfo: TextView
+    private val tvSelectedCoin by lazy {
+        findViewById<TextView>(R.id.tvSelectedCoin)
+    }
+    private val ivSelectedCoin by lazy {
+        findViewById<ImageView>(R.id.ivSelectedCoin)
+    }
+    private val tvDetailedInfo by lazy {
+        findViewById<TextView>(R.id.tvDetailedInfo)
+    }
 
     private val viewModel: CoinDetailedViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_selected_coin)
-        ivSelectedCoin = findViewById(R.id.ivSelectedCoin)
-        tvSelectedCoin = findViewById(R.id.tvSelectedCoin)
-        tvDetailedInfo = findViewById(R.id.tvDetailedInfo)
 
         val receive = intent.getStringExtra("minModel")
         receive?.let { viewModel.getDetailedData(it) }
