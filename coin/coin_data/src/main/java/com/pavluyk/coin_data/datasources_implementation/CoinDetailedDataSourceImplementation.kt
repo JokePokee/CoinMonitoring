@@ -6,8 +6,8 @@ import com.pavluyk.coin_domain.models.CoinDetailed
 
 class CoinDetailedDataSourceImplementation(private val coinDetailedApi: CoinDetailedApi) :
     CoinDetailedDataSource {
-    override suspend fun fetchDetailedData(symbol: String): CoinDetailed {
-        return coinDetailedApi.getDetailedData(symbol).data
+    override suspend fun fetchDetailedData(id: String): CoinDetailed {
+        return coinDetailedApi.getDetailedData(id).data
     }
 
 }

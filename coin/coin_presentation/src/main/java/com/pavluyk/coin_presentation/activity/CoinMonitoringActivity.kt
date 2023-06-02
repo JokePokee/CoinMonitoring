@@ -14,11 +14,11 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CoinMonitoringActivity : AppCompatActivity() {
     val adapter = CoinMonitoringAdapter(
-        clickListener = { symbol ->
+        clickListener = { id ->
             startActivity(
                 Intent(this, SelectedCoinActivity::class.java).putExtra(
                     "minModel",
-                    symbol
+                    id
                 )
             )
         },

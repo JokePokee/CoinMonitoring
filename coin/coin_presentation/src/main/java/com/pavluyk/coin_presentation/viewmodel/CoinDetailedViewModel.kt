@@ -20,9 +20,9 @@ class CoinDetailedViewModel(
 
     var coinDetailedLiveData = MutableLiveData<CoinDetailed>()
 
-    fun getDetailedData(symbol: String) {
+    fun getDetailedData(id: String) {
         viewModelScope.launch {
-            coinDetailedLiveData.value = fetchDetailedDataUseCase.execute(symbol)
+            coinDetailedLiveData.value = fetchDetailedDataUseCase.execute(id)
         }
 
     }

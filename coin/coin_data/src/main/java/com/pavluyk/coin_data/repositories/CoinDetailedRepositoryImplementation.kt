@@ -8,9 +8,9 @@ import kotlinx.coroutines.withContext
 
 class CoinDetailedRepositoryImplementation(private val coinDetailedDataSource: CoinDetailedDataSource) :
     CoinDetailedRepository {
-    override suspend fun fetchDetailedData(symbol: String): CoinDetailed {
+    override suspend fun fetchDetailedData(id: String): CoinDetailed {
         return withContext(DefaultDispatcherProvider.io()) {
-            coinDetailedDataSource.fetchDetailedData(symbol)
+            coinDetailedDataSource.fetchDetailedData(id)
         }
     }
 }
