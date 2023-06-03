@@ -14,9 +14,6 @@
         android:theme="@style/Theme.CoinMonitoring"
         tools:targetApi="31">
         <activity
-            android:name="com.pavluyk.coin_presentation.activity.SelectedCoinActivity"
-            android:exported="false" />
-        <activity
             android:name="com.pavluyk.coin_presentation.activity.CoinMonitoringActivity"
             android:exported="true">
             <intent-filter>

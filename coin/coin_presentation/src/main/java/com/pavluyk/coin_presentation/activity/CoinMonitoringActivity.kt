@@ -13,34 +13,10 @@ import com.pavluyk.coin_presentation.viewmodel.CoinMonitoringViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CoinMonitoringActivity : AppCompatActivity() {
-    val adapter = CoinMonitoringAdapter(
-        clickListener = { id ->
-            startActivity(
-                Intent(this, SelectedCoinActivity::class.java).putExtra(
-                    "minModel",
-                    id
-                )
-            )
-        },
-        onScrolledToBottom = {
-            viewModel.onPagination()
-        })
-
-    private val viewModel: CoinMonitoringViewModel by viewModel()
-    val recyclerView by lazy {
-        findViewById<RecyclerView>(R.id.rvCoin).apply {
-            adapter = this@CoinMonitoringActivity.adapter
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        recyclerView.layoutManager = LinearLayoutManager(this@CoinMonitoringActivity)
-
-        viewModel.coinDataLiveData.observe(this, Observer {
-            it?.let { adapter.setData(it) }
-        })
 
     }
 }

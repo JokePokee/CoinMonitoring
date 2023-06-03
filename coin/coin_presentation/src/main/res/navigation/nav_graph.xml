@@ -20,7 +20,8 @@
     </fragment>
     <fragment
         android:id="@+id/selectedCoinFragment"
-        android:name="com.pavluyk.coin_presentation.activity.SelectedCoinFragment"
+        android:name="com.pavluyk.coin_presentation.activity.DetailedCoinFragment"
         android:label="fragment_selected_coin"
-        tools:layout="@layout/fragment_selected_coin" />
+        tools:layout="@layout/fragment_selected_coin">
+    </fragment>
 </navigation>
