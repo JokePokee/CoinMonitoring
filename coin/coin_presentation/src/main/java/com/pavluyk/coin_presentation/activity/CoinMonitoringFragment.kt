@@ -29,8 +29,8 @@ class CoinMonitoringFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.coinDataLiveData.observe(this) {
-            it?.let { adapter.setData(it) }
+        viewModel.coinDataLiveData.observe(this) { coin ->
+            adapter.setData(coin)
         }
     }
 

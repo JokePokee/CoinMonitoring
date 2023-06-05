@@ -9,7 +9,7 @@ import com.pavluyk.coin_domain.usecases.FetchDetailedDataUseCase
 import kotlinx.coroutines.launch
 
 class CoinDetailedViewModel(
-    private val fetchDetailedData: FetchDetailedDataUseCase,
+    private val getDetailedInfoOfCoin: FetchDetailedDataUseCase,
     val id: String
 ) : ViewModel() {
 
@@ -21,7 +21,7 @@ class CoinDetailedViewModel(
 
     private fun getDetailedData(id: String) {
         viewModelScope.launch {
-            coinDetailedLiveData.value = fetchDetailedData.execute(id)
+            coinDetailedLiveData.value = getDetailedInfoOfCoin.execute(id)
         }
 
     }

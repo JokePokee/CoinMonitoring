@@ -8,6 +8,6 @@ import org.koin.dsl.module
 
 val coinDetailedViewModels = module {
     viewModel { (bundle: Bundle?) ->
-        CoinDetailedViewModel(fetchDetailedData = get(), id = bundle?.getString(ARG_ID) ?: "")
+        CoinDetailedViewModel(id = bundle?.getString(ARG_ID) ?: "", getDetailedInfoOfCoin = get())
     }
 }
