@@ -8,7 +8,7 @@ import com.pavluyk.coin_domain.models.CoinModel
 class CoinMonitoringDataSourceImplementation(private val coinMonitoringApi: CoinMonitoringApi) :
     CoinMonitoringDataSource {
     override suspend fun fetchData(coinId: Int?, pageCount: Int): List<CoinModel> {
-        return coinMonitoringApi.getData(offset = coinId, limit = pageCount).data
+        return coinMonitoringApi.getData(offset = coinId, limit = pageCount).coins
     }
 
 }

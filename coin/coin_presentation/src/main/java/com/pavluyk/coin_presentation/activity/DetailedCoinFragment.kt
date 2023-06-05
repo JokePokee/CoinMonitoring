@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.pavluyk.coin_presentation.R
@@ -37,7 +36,6 @@ class DetailedCoinFragment : Fragment() {
     }
 
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tvSelectedCoin = view.findViewById(R.id.tvSelectedCoin)
@@ -47,14 +45,10 @@ class DetailedCoinFragment : Fragment() {
         viewModel.coinDetailedLiveData.observe(viewLifecycleOwner) { coinDetailed ->
             tvSelectedCoin?.text = coinDetailed.name
             tvDetailedInfo?.text = coinDetailed.assetDescription
-            ivSelectedCoin.apply {
-                ivSelectedCoin?.context?.let { it1 ->
-                    this?.let { it2 ->
-                        Glide.with(it1).load(coinDetailed.logoUrl).into(
-                            it2
-                        )
-                    }
-                }
+            ivSelectedCoin?.apply {
+                Glide.with(context)
+                    .load(coinDetailed.logoUrl)
+                    .into(this)
             }
 
         }

@@ -1,4 +1,4 @@
-package com.pavluyk.coinmonitoring.koin
+package com.pavluyk.coinmonitoring.coin
 
 import android.content.Intent
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package com.pavluyk.coinmonitoring.koin
+package com.pavluyk.coinmonitoring.coin
 
 import android.app.Application
 import com.pavluyk.coin_di.appModule
@@ -26,6 +26,5 @@ class CoinApplication : Application(), KoinComponent {
                 coinDetailedViewModels
             )
         }
-
     }
 }

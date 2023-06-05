@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.pavluyk.coin_presentation.R
@@ -13,15 +12,14 @@ import com.pavluyk.coin_presentation.activity.DetailedCoinFragment.Companion.ARG
 import com.pavluyk.coin_presentation.adapter.CoinMonitoringAdapter
 import com.pavluyk.coin_presentation.viewmodel.CoinMonitoringViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.parameter.parametersOf
 
 
 class CoinMonitoringFragment : Fragment() {
 
     private val viewModel: CoinMonitoringViewModel by viewModel()
-    var recyclerView: RecyclerView? = null
+    private var recyclerView: RecyclerView? = null
 
-    val adapter = CoinMonitoringAdapter(
+    private val adapter = CoinMonitoringAdapter(
         clickListener = { id ->
             viewModel.onCoinClicked(id)
         },
@@ -31,16 +29,16 @@ class CoinMonitoringFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.coinDataLiveData.observe(this, Observer {
+        viewModel.coinDataLiveData.observe(this) {
             it?.let { adapter.setData(it) }
-        })
+        }
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = view.findViewById(R.id.rvCoin)
-        recyclerView?.adapter = this@CoinMonitoringFragment.adapter
+        recyclerView?.adapter = adapter
 
         viewModel.navigationEvent.observe(viewLifecycleOwner, ::handleNavigation)
 

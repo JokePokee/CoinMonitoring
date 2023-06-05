@@ -13,13 +13,16 @@ import com.pavluyk.coin_domain.usecases.FetchDetailedDataUseCase
 import org.koin.dsl.module
 
 val appModule = module {
-    factory { FetchDataUseCase(get()) }
-    factory { FetchDetailedDataUseCase(get()) }
+    factory { FetchDataUseCase(coinMonitoringRepository = get()) }
+    factory { FetchDetailedDataUseCase(coinDetailedRepository = get()) }
 
-    factory<CoinMonitoringRepository> { CoinMonitoringRepositoryImplementation(get()) }
-    factory<CoinDetailedRepository> { CoinDetailedRepositoryImplementation(get()) }
+    factory<CoinMonitoringRepository> {
+        CoinMonitoringRepositoryImplementation(
+            coinMonitoringDataSource = get()
+        )
+    }
+    factory<CoinDetailedRepository> { CoinDetailedRepositoryImplementation(coinDetailedDataSource = get()) }
 
-    single<CoinMonitoringDataSource> { CoinMonitoringDataSourceImplementation(get()) }
-    single<CoinDetailedDataSource> { CoinDetailedDataSourceImplementation(get()) }
-
+    single<CoinMonitoringDataSource> { CoinMonitoringDataSourceImplementation(coinMonitoringApi = get()) }
+    single<CoinDetailedDataSource> { CoinDetailedDataSourceImplementation(coinDetailedApi = get()) }
 }

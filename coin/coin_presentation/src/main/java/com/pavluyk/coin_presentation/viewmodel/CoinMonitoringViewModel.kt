@@ -1,8 +1,6 @@
 package com.pavluyk.coin_presentation.viewmodel
 
 
-import android.os.Bundle
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,7 +10,7 @@ import com.pavluyk.coinmonitortest.SingleLiveEvent
 import kotlinx.coroutines.launch
 
 class CoinMonitoringViewModel(
-    private val fetchDataUseCase: FetchDataUseCase
+    private val fetchData: FetchDataUseCase
 ) : ViewModel() {
 
     val coinDataLiveData = MutableLiveData<List<CoinModel>>()
@@ -25,7 +23,7 @@ class CoinMonitoringViewModel(
     init {
         viewModelScope.launch {
             isLoading = true
-            coinDataLiveData.value = fetchDataUseCase.execute()
+            coinDataLiveData.value = fetchData.execute()
             isLoading = false
         }
     }
@@ -40,9 +38,9 @@ class CoinMonitoringViewModel(
                 isLoading = true
                 val currentList = coinDataLiveData.value ?: emptyList()
                 coinDataLiveData.value = if (currentList.isNotEmpty()) {
-                    currentList + fetchDataUseCase.execute(currentList.last().rank)
+                    currentList + fetchData.execute(currentList.last().rank)
                 } else {
-                    fetchDataUseCase.execute()
+                    fetchData.execute()
                 }
                 isLoading = false
             }

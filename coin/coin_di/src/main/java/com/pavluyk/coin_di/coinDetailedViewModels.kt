@@ -7,7 +7,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val coinDetailedViewModels = module {
-    viewModel { (param: Bundle?) ->
-        CoinDetailedViewModel(get(), param?.getString(ARG_ID) ?: "")
+    viewModel { (bundle: Bundle?) ->
+        CoinDetailedViewModel(fetchDetailedData = get(), id = bundle?.getString(ARG_ID) ?: "")
     }
 }
