@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/coinMonitoringFragment">
+
+    <fragment
+        android:id="@+id/coinMonitoringFragment"
+        android:name="com.pavluyk.coin_presentation.activity.CoinMonitoringFragment"
+        android:label="fragment_coin_monitoring"
+        tools:layout="@layout/fragment_coin_monitoring">
+        <action
+            android:id="@+id/action_coinMonitoringFragment_to_selectedCoinFragment"
+            app:destination="@id/selectedCoinFragment"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectedCoinFragment"
+        android:name="com.pavluyk.coin_presentation.activity.DetailedCoinFragment"
+        android:label="fragment_selected_coin"
+        tools:layout="@layout/fragment_selected_coin">
+    </fragment>
+</navigation>
