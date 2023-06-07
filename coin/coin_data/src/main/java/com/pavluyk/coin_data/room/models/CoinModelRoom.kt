@@ -24,5 +24,4 @@ data class CoinModelRoom(
     var vWap24Hr: String,
     @ColumnInfo(name = "rank")
     var rank: Int
-
 )

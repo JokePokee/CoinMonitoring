@@ -11,5 +11,4 @@ class CoinMonitoringDataSourceImplementation(
     override suspend fun fetchData(coinId: Int?, pageCount: Int): List<CoinModel> {
         return coinMonitoringApi.getData(offset = coinId, limit = pageCount).coins
     }
-
 }

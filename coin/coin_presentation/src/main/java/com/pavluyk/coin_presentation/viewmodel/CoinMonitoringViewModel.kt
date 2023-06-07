@@ -29,7 +29,6 @@ class CoinMonitoringViewModel(
         initialFetchCoins()
     }
 
-
     private fun initialFetchCoins() {
         viewModelScope.launch {
             isLoading = true
@@ -74,5 +73,4 @@ class CoinMonitoringViewModel(
     sealed interface Navigation {
         data class ToDetailedFragment(var id: String) : Navigation
     }
-
 }

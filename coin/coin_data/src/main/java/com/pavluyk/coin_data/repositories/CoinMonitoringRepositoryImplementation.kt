@@ -29,6 +29,4 @@ class CoinMonitoringRepositoryImplementation(
     override fun observeCoinList(): Flow<List<CoinModel>> {
         return localDataSource.observeCoinModels()
     }
-
-
 }
