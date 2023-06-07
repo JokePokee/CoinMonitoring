@@ -9,6 +9,6 @@ data class CoinModel(
     @SerializedName("marketCapUsd") var marketCapUsd: Float,
     @SerializedName("priceUsd") var priceUsd: Float,
     @SerializedName("changePercent24Hr")var changePercent24Hr: Float,
-    @SerializedName("vWap24Hr")var vWap24Hr: String,
+    @SerializedName("vwap24Hr")var vWap24Hr: String,
     @SerializedName("rank")var rank: Int
 )
