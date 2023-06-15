@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pavluyk.coin_domain.models.CoinModel
-import com.pavluyk.coin_domain.usecases.CoinsUseCase
+import com.pavluyk.coin_domain.usecases.FetchCoinUseCase
+import com.pavluyk.coin_domain.usecases.ObserveCoinsUseCase
+import com.pavluyk.coin_domain.usecases.RemoveCoinsUseCase
 import com.pavluyk.coinmonitortest.SingleLiveEvent
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
@@ -14,7 +16,9 @@ import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
 
 class CoinMonitoringViewModel(
-    private val coinsUseCase: CoinsUseCase
+    private val fetchCoinUseCase: FetchCoinUseCase,
+    private val removeCoinsUseCase: RemoveCoinsUseCase,
+    private val observeCoinsUseCase: ObserveCoinsUseCase
 ) : ViewModel() {
 
     val coinDataLiveData = MutableLiveData<List<CoinModel>>()
@@ -33,14 +37,14 @@ class CoinMonitoringViewModel(
         viewModelScope.launch {
             isLoading = true
             delay((2L).seconds)
-            coinsUseCase.fetchCoins()
+            fetchCoinUseCase.fetchCoins()
             isLoading = false
         }
     }
 
     private fun removeAllCoinFromDb() {
         viewModelScope.launch {
-            coinsUseCase.removeAllCoins()
+            removeCoinsUseCase.removeAllCoins()
         }
     }
 
@@ -49,7 +53,7 @@ class CoinMonitoringViewModel(
     }
 
     private fun observeCoins() {
-        coinsUseCase.observeCoins()
+        observeCoinsUseCase.observeCoins()
             .onEach {
                 coinDataLiveData.value = it
             }.launchIn(viewModelScope)
@@ -61,9 +65,9 @@ class CoinMonitoringViewModel(
                 isLoading = true
                 val currentList = coinDataLiveData.value ?: emptyList()
                 if (currentList.isNotEmpty()) {
-                    coinsUseCase.fetchCoins(currentList.last().rank)
+                    fetchCoinUseCase.fetchCoins(currentList.last().rank)
                 } else {
-                    coinsUseCase.fetchCoins()
+                    fetchCoinUseCase.fetchCoins()
                 }
                 isLoading = false
             }

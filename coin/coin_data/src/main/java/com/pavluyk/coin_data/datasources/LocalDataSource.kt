@@ -6,9 +6,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface LocalDataSource {
 
-    suspend fun insertCoinModelList(list: List<CoinModel>)
+    suspend fun saveCoins(list: List<CoinModel>)
 
-    fun observeCoinModels(): Flow<List<CoinModel>>
+    fun observeCoins(): Flow<List<CoinModel>>
 
     suspend fun removeAllCoins()
 }

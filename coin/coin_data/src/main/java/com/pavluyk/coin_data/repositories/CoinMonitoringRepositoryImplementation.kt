@@ -16,7 +16,7 @@ class CoinMonitoringRepositoryImplementation(
     override suspend fun fetchData(coinId: Int?, pageCount: Int) {
         return withContext(DefaultDispatcherProvider.io()) {
             coinMonitoringDataSource.fetchData(coinId, pageCount)
-                .also { localDataSource.insertCoinModelList(it) }
+                .also { localDataSource.saveCoins(it) }
         }
     }
 
@@ -27,6 +27,6 @@ class CoinMonitoringRepositoryImplementation(
     }
 
     override fun observeCoinList(): Flow<List<CoinModel>> {
-        return localDataSource.observeCoinModels()
+        return localDataSource.observeCoins()
     }
 }

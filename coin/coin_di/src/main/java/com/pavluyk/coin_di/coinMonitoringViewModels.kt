@@ -6,6 +6,10 @@ import org.koin.dsl.module
 
 val coinMonitoringViewModels = module {
     viewModel {
-        CoinMonitoringViewModel(coinsUseCase = get())
+        CoinMonitoringViewModel(
+            fetchCoinUseCase = get(),
+            removeCoinsUseCase = get(),
+            observeCoinsUseCase = get()
+        )
     }
 }

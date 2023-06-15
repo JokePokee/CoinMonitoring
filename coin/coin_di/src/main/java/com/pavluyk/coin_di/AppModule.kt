@@ -11,13 +11,17 @@ import com.pavluyk.coin_data.repositories.CoinMonitoringRepositoryImplementation
 import com.pavluyk.coin_data.room.AppDataBase
 import com.pavluyk.coin_domain.repositories.CoinDetailedRepository
 import com.pavluyk.coin_domain.repositories.CoinMonitoringRepository
-import com.pavluyk.coin_domain.usecases.CoinsUseCase
+import com.pavluyk.coin_domain.usecases.FetchCoinUseCase
 import com.pavluyk.coin_domain.usecases.FetchDetailedDataUseCase
+import com.pavluyk.coin_domain.usecases.ObserveCoinsUseCase
+import com.pavluyk.coin_domain.usecases.RemoveCoinsUseCase
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 val appModule = module {
-    factory { CoinsUseCase(coinMonitoringRepository = get()) }
+    factory { FetchCoinUseCase(coinMonitoringRepository = get()) }
+    factory { ObserveCoinsUseCase(coinMonitoringRepository = get()) }
+    factory { RemoveCoinsUseCase(coinMonitoringRepository = get()) }
     factory { FetchDetailedDataUseCase(coinDetailedRepository = get()) }
 
     factory<CoinMonitoringRepository> {

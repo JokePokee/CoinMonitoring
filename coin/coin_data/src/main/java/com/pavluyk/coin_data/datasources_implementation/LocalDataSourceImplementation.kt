@@ -11,11 +11,11 @@ import kotlinx.coroutines.flow.map
 class LocalDataSourceImplementation(
     private val coinDao: CoinDao,
 ) : LocalDataSource {
-    override suspend fun insertCoinModelList(list: List<CoinModel>) {
+    override suspend fun saveCoins(list: List<CoinModel>) {
         coinDao.insertCoinInfo(list.map { it.toData() })
     }
 
-    override fun observeCoinModels(): Flow<List<CoinModel>> {
+    override fun observeCoins(): Flow<List<CoinModel>> {
        return coinDao.observeCoinModels().map { list -> list.map { it.toDomain() } }
     }
 
