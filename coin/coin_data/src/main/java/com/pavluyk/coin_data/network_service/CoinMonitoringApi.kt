@@ -6,7 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface CoinMonitoringApi {
-
     @GET("assets?")
     suspend fun getData(
         @Query("limit") limit: Int = 9,

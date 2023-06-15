@@ -9,5 +9,4 @@ class CoinDetailedDataSourceImplementation(private val coinDetailedApi: CoinDeta
     override suspend fun fetchDetailedData(id: String): CoinDetailed {
         return coinDetailedApi.getDetailedData(id).data
     }
-
 }
